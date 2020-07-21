@@ -2,8 +2,8 @@
   "name": "oauth-pkce",
   "version": "0.0.1-alpha.0",
   "description": "OAUTH PKCE code_verifier and code_challenge generator",
-  "main": "./dist/src/index.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "directories": {
     "test": "tests"
   },
@@ -21,11 +21,11 @@
   "scripts": {
     "start": "cross-env NODE_PATH=./dist NODE_ENV=production node .",
     "test": "echo 'please open tests/mocha.html in a browser'",
-    "build": "rm -fr ./dist/* && tsc && uglifyjs --compress --mangle --output ./dist/oauth-pkce.min.js ./dist/index.standalone.js",
+    "build": "rm -fr ./dist/* && tsc --declaration && uglifyjs --compress --mangle --output ./dist/oauth-pkce.min.js ./dist/index.standalone.js",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier",
     "ts": "ts-node",
-    "prepublishOnly": "npm run build -- --declaration"
+    "prepublishOnly": "npm run build"
   },
   "author": "Daniel Gong <daniel.k.gong@gmail.com>",
   "license": "MIT",
@@ -64,5 +64,6 @@
   },
   "lint-staged": {
     "{tests,src}/**/*.{js,ts}": "eslint --fix"
-  }
+  },
+  "gitHead": "35d274d6b5fd8619751f31a4e74d94f3204589f6"
 }

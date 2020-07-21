@@ -1,0 +1,10 @@
+src
+tests
+!.gitignore
+tmp
+.vscode
+.eslintignore
+.prettierrc
+.eslintrc.json
+.mocharc.json
+tsconfig.json

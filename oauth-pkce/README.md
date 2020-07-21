@@ -56,7 +56,7 @@ const { verifier, challenge } = await new Promise((resolve) => {
 });
 ```
 
-### Server code_verifier Verification
+### Server Side code_verifier Verification
 
 For node environment, use [crypto module](https://nodejs.org/api/crypto.html) natively from node.
 
@@ -69,7 +69,7 @@ const base64UriEncoded = base64.replace(/\+/g, '-').replace(/\//g, '_').replace(
 const isValid = base64UriEncoded === code_challenge;
 ```
 
-code_challenge is a Base64URL encoded string ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-5)). To verify the `code_verifier` you need to convert the base64 value of `crypto.createHash('sha256').update(code_verifier).digest('base64')` to a base64url encoded string.
+code_challenge is a Base64URL encoded string ([RFC 4648](https://tools.ietf.org/html/rfc4648#section-5)). To verify the `code_verifier` you need to convert the base64 value of `crypto.createHash('sha256').update(code_verifier).digest('base64')` to a **base64url** encoded string.
 
 _In `getPkce()`, base64url removes the pad characters "=" from code_challenge_
 

@@ -10,6 +10,7 @@
     <script src="../node_modules/chai/chai.js"></script>
     <script src="../node_modules/crypto-js/crypto-js.js"></script>
     <script src="../dist/src/index.standalone.js"></script>
+    <!-- <script src="../dist/src/oauth-pkce.min.js"></script> -->
     <script>
       mocha.setup('bdd');
       mocha.checkLeaks();
@@ -23,30 +24,47 @@
             let challenge;
             before(function (done) {
               getPkce(undefined, function (error, value) {
-                verifier = value.verifier;
-                challenge = value.challenge;
+                if (!error) {
+                  verifier = value.verifier;
+                  challenge = value.challenge;
+                  console.log(value);
+                }
                 done(error);
               });
             });
 
-            it('should generate a code verifier of 44 characters', function () {
-              chai.expect(verifier).to.have.lengthOf(44);
-              chai
-                .expect(challenge)
-                .to.equal(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(verifier)).toString(CryptoJS.enc.Base64));
+            it('should generate a code verifier of 43 characters', function () {
+              chai.expect(verifier).to.have.lengthOf(43);
+            });
+
+            it('should generate a BASE64 SHA256 challenge', function () {
+              chai.expect(challenge).to.equal(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
             });
           });
         });
 
-        context('when getPkce(70) is called', function () {
-          it('should generate a code verifier of 70 characters', function (done) {
-            getPkce(70, function (error, value) {
-              chai.expect(value.verifier).to.have.lengthOf(70);
-              chai
-                .expect(value.challenge)
-                .to.equal(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(value.verifier)).toString(CryptoJS.enc.Base64));
+        const length = 128;
+        context('when getPkce() is called with a length value of ' + length, function () {
+          let verifier;
+          let challenge;
+          before(function (done) {
+            getPkce(length, function (error, value) {
+              if (!error) {
+                verifier = value.verifier;
+                challenge = value.challenge;
+                console.log(value);
+              }
               done(error);
             });
+          });
+
+          it('should generate a code verifier of ' + length + 'characters', function () {
+            chai.expect(verifier).to.have.lengthOf(128);
+          });
+
+          it('should generate a BASE64 SHA256 challenge', function () {
+            console.log(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
+            chai.expect(challenge).to.equal(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
           });
         });
       });

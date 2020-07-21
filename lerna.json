@@ -1,0 +1,4 @@
+{
+  "packages": ["oauth-pkce"],
+  "version": "independent"
+}

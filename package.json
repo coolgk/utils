@@ -1,0 +1,22 @@
+{
+  "name": "utility-helpers",
+  "version": "0.0.0",
+  "description": "utility functions",
+  "scripts": {
+    "lerna": "lerna",
+    "pub": "lerna publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coolgk/utils.git"
+  },
+  "author": "Daniel Gong <daniel.k.gong@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coolgk/utils/issues"
+  },
+  "homepage": "https://github.com/coolgk/utils#readme",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}

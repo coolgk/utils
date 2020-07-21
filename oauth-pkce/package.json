@@ -1,24 +1,34 @@
 {
   "name": "oauth-pkce",
   "version": "0.0.0",
-  "description": "This is a generic template for node + typescript projects. It bootstraps a template project with [some popular packages](#Configuration-Files) and [npm script commands](#NPM-Scripts) pre-configured.",
-  "main": "dist/src",
+  "description": "OAUTH PKCE code_verifier and code_challenge generator",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "directories": {
     "test": "tests"
   },
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "PKCE",
+    "code_verifier",
+    "code_challenge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coolgk/utils/tree/master/oauth-pkce"
+  },
   "scripts": {
     "start": "cross-env NODE_PATH=./dist NODE_ENV=production node .",
-    "test": "cross-env NODE_PATH=./dist mocha tests/**/*.test.ts",
-    "build": "rm -fr ./dist/* && tsc && uglifyjs --compress --mangle --output ./dist/src/oauth-pkce.min.js ./dist/src/index.standalone.js",
+    "test": "echo 'please open tests/mocha.html in a browser'",
+    "build": "rm -fr ./dist/* && tsc && uglifyjs --compress --mangle --output ./dist/oauth-pkce.min.js ./dist/index.standalone.js",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier",
     "ts": "ts-node",
-    "webpack": "webpack",
     "prepublishOnly": "npm run build -- --declaration"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Daniel Gong <daniel.k.gong@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@size-limit/file": "^4.5.5",
     "@types/chai": "^4.2.11",
@@ -49,7 +59,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "npm run test:dev && npm audit"
+      "pre-push": "npm audit"
     }
   },
   "lint-staged": {

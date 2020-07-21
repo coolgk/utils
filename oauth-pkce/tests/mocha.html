@@ -9,8 +9,8 @@
     <script src="../node_modules/mocha/mocha.js"></script>
     <script src="../node_modules/chai/chai.js"></script>
     <script src="../node_modules/crypto-js/crypto-js.js"></script>
-    <script src="../dist/src/index.standalone.js"></script>
-    <!-- <script src="../dist/src/oauth-pkce.min.js"></script> -->
+    <!-- <script src="../dist/index.standalone.js"></script> -->
+    <script src="../dist/oauth-pkce.min.js"></script>
     <script>
       mocha.setup('bdd');
       mocha.checkLeaks();
@@ -38,7 +38,15 @@
             });
 
             it('should generate a BASE64 SHA256 challenge', function () {
-              chai.expect(challenge).to.equal(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
+              chai
+                .expect(challenge)
+                .to.equal(
+                  CryptoJS.SHA256(verifier)
+                    .toString(CryptoJS.enc.Base64)
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '')
+                );
             });
           });
         });
@@ -64,7 +72,15 @@
 
           it('should generate a BASE64 SHA256 challenge', function () {
             console.log(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
-            chai.expect(challenge).to.equal(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
+            chai
+              .expect(challenge)
+              .to.equal(
+                CryptoJS.SHA256(verifier)
+                  .toString(CryptoJS.enc.Base64)
+                  .replace(/\+/g, '-')
+                  .replace(/\//g, '_')
+                  .replace(/=+$/, '')
+              );
           });
         });
       });

@@ -1,6 +1,6 @@
 {
   "name": "oauth-pkce",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "OAUTH PKCE code_verifier and code_challenge generator",
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",

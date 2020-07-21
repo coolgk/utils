@@ -12,7 +12,11 @@ This package is for browsers only (including IE 11), it uses [Web Crypto API](ht
 
 ## CDN
 
-https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.1/dist/oauth-pkce.min.js
+https://cdn.jsdelivr.net/npm/oauth-pkce@latest/dist/oauth-pkce.min.js
+
+or with version
+
+https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js
 
 ## Usage
 
@@ -36,7 +40,7 @@ getPkce(43, (error, { verifier, challenge }) => {
 Use directly from CDN
 
 ```javasript
-<script src="https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.1/dist/oauth-pkce.min.js" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js" async defer></script>
 
 getPkce(43, (error, { verifier, challenge }) => {
   if (!error) {

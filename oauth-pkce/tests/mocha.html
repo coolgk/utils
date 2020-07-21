@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/crypto-js/crypto-js.js"></script>
+    <script src="../dist/src/index.standalone.js"></script>
+    <script>
+      mocha.setup('bdd');
+      mocha.checkLeaks();
+    </script>
+
+    <script>
+      describe('PKCE', function () {
+        context('given no params passed to getPkce()', function () {
+          context('when getPkce() is called', function () {
+            let verifier;
+            let challenge;
+            before(function (done) {
+              getPkce(undefined, function (error, value) {
+                verifier = value.verifier;
+                challenge = value.challenge;
+                done(error);
+              });
+            });
+
+            it('should generate a code verifier of 44 characters', function () {
+              chai.expect(verifier).to.have.lengthOf(44);
+              chai
+                .expect(challenge)
+                .to.equal(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(verifier)).toString(CryptoJS.enc.Base64));
+            });
+          });
+        });
+
+        context('when getPkce(70) is called', function () {
+          it('should generate a code verifier of 70 characters', function (done) {
+            getPkce(70, function (error, value) {
+              chai.expect(value.verifier).to.have.lengthOf(70);
+              chai
+                .expect(value.challenge)
+                .to.equal(CryptoJS.SHA256(CryptoJS.enc.Hex.parse(value.verifier)).toString(CryptoJS.enc.Base64));
+              done(error);
+            });
+          });
+        });
+      });
+    </script>
+
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

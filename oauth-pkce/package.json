@@ -1,0 +1,58 @@
+{
+  "name": "oauth-pkce",
+  "version": "0.0.0",
+  "description": "This is a generic template for node + typescript projects. It bootstraps a template project with [some popular packages](#Configuration-Files) and [npm script commands](#NPM-Scripts) pre-configured.",
+  "main": "dist/src",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=./dist NODE_ENV=production node .",
+    "test": "cross-env NODE_PATH=./dist mocha tests/**/*.test.ts",
+    "build": "rm -fr ./dist/* && tsc && uglifyjs --compress --mangle --output ./dist/src/oauth-pkce.min.js ./dist/src/index.standalone.js",
+    "lint": "eslint --ext .js,.ts .",
+    "format": "prettier",
+    "ts": "ts-node",
+    "webpack": "webpack",
+    "prepublishOnly": "npm run build -- --declaration"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@size-limit/file": "^4.5.5",
+    "@types/chai": "^4.2.11",
+    "@types/crypto-js": "^3.1.47",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.23",
+    "@types/sinon": "^9.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "crypto-js": "^4.0.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.0.1",
+    "prettier": "^2.0.5",
+    "sinon": "^9.0.2",
+    "size-limit": "^4.5.5",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "uglify-js": "^3.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:dev && npm audit"
+    }
+  },
+  "lint-staged": {
+    "{tests,src}/**/*.{js,ts}": "eslint --fix"
+  }
+}

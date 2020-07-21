@@ -1,0 +1,11 @@
+{
+  "require": ["ts-node/register", "source-map-support/register"],
+  "recursive": true,
+  "check-leaks": true,
+  "exit": true,
+  "full-trace": true,
+  "bail": true,
+  "no-timeout": true,
+  "colors": true,
+  "watch-files": ["src/**/*.ts", "tests/**/*.ts"]
+}

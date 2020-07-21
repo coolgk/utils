@@ -1,0 +1,69 @@
+{
+  "name": "oauth-pkce",
+  "version": "0.0.2",
+  "description": "OAUTH PKCE code_verifier and code_challenge generator",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "PKCE",
+    "code_verifier",
+    "code_challenge"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coolgk/utils/tree/master/oauth-pkce"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=./dist NODE_ENV=production node .",
+    "test": "echo 'please open tests/mocha.html in a browser'",
+    "build": "rm -fr ./dist/* && tsc --declaration && uglifyjs --compress --mangle --output ./dist/oauth-pkce.min.js ./dist/index.standalone.js",
+    "lint": "eslint --ext .js,.ts .",
+    "format": "prettier",
+    "ts": "ts-node",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Daniel Gong <daniel.k.gong@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@size-limit/file": "^4.5.5",
+    "@types/chai": "^4.2.11",
+    "@types/crypto-js": "^3.1.47",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.23",
+    "@types/sinon": "^9.0.4",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "chai": "^4.2.0",
+    "cross-env": "^7.0.2",
+    "crypto-js": "^4.0.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-security": "^1.4.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "mocha": "^8.0.1",
+    "prettier": "^2.0.5",
+    "sinon": "^9.0.2",
+    "size-limit": "^4.5.5",
+    "source-map-support": "^0.5.19",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "uglify-js": "^3.10.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm audit"
+    }
+  },
+  "lint-staged": {
+    "{tests,src}/**/*.{js,ts}": "eslint --fix"
+  },
+  "gitHead": "35d274d6b5fd8619751f31a4e74d94f3204589f6"
+}

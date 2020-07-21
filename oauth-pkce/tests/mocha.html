@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/crypto-js/crypto-js.js"></script>
+    <!-- <script src="../dist/index.standalone.js"></script> -->
+    <!-- <script src="../dist/oauth-pkce.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/oauth-pkce@latest/dist/oauth-pkce.min.js"></script>
+    <script>
+      mocha.setup('bdd');
+      mocha.checkLeaks();
+    </script>
+
+    <script>
+      describe('PKCE', function () {
+        context('given no params passed to getPkce()', function () {
+          context('when getPkce() is called', function () {
+            let verifier;
+            let challenge;
+            before(function (done) {
+              getPkce(undefined, function (error, value) {
+                if (!error) {
+                  verifier = value.verifier;
+                  challenge = value.challenge;
+                  console.log(value);
+                }
+                done(error);
+              });
+            });
+
+            it('should generate a code verifier of 43 characters', function () {
+              chai.expect(verifier).to.have.lengthOf(43);
+            });
+
+            it('should generate a BASE64 SHA256 challenge', function () {
+              chai
+                .expect(challenge)
+                .to.equal(
+                  CryptoJS.SHA256(verifier)
+                    .toString(CryptoJS.enc.Base64)
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '')
+                );
+            });
+          });
+        });
+
+        const length = 128;
+        context('when getPkce() is called with a length value of ' + length, function () {
+          let verifier;
+          let challenge;
+          before(function (done) {
+            getPkce(length, function (error, value) {
+              if (!error) {
+                verifier = value.verifier;
+                challenge = value.challenge;
+                console.log(value);
+              }
+              done(error);
+            });
+          });
+
+          it('should generate a code verifier of ' + length + 'characters', function () {
+            chai.expect(verifier).to.have.lengthOf(128);
+          });
+
+          it('should generate a BASE64 SHA256 challenge', function () {
+            console.log(CryptoJS.SHA256(verifier).toString(CryptoJS.enc.Base64));
+            chai
+              .expect(challenge)
+              .to.equal(
+                CryptoJS.SHA256(verifier)
+                  .toString(CryptoJS.enc.Base64)
+                  .replace(/\+/g, '-')
+                  .replace(/\//g, '_')
+                  .replace(/=+$/, '')
+              );
+          });
+        });
+      });
+    </script>
+
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

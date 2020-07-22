@@ -24,7 +24,7 @@ https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js
 
 Typescript Ready
 
-```javasript
+```JavaScript
 import getPkce from 'oauth-pkce'
 
 // create a verifier of 43 characters long
@@ -39,7 +39,7 @@ getPkce(43, (error, { verifier, challenge }) => {
 
 Use directly from CDN
 
-```javasript
+```JavaScript
 <script src="https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js" async defer></script>
 
 getPkce(43, (error, { verifier, challenge }) => {
@@ -47,6 +47,29 @@ getPkce(43, (error, { verifier, challenge }) => {
     console.log({ verifier, challenge });
   }
 });
+```
+
+React
+
+```JSX
+import React, { useEffect, useState } from 'react';
+import getPkce from 'oauth-pkce';
+
+function Pkce() {
+  const { pkce, setPkce } = useState({});
+
+  useEffect(() => {
+    // getPkce relies on the window object for its crypto api
+    // put in in useEffect
+    getPkce(50, (error, { verifier, challenge }) => {
+      setPkce({ verifier, challenge });
+    });
+  }, []);
+
+  return (
+    <div>{pkce.verifier} | {pkce.challenge}</div>
+  );
+}
 ```
 
 This package uses callback style for minimising code size and compatibility with IE 11. Wrapp it in a Promise if you prefer async await style.

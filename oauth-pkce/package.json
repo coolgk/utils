@@ -12,6 +12,8 @@
     "oauth2",
     "PKCE",
     "code_verifier",
+    "IE11",
+    "IE 11",
     "code_challenge"
   ],
   "repository": {

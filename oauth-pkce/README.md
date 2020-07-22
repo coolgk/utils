@@ -24,8 +24,8 @@ https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js
 
 Typescript Ready
 
-```JavaScript
-import getPkce from 'oauth-pkce'
+```javascript
+import getPkce from 'oauth-pkce';
 
 // create a verifier of 43 characters long
 getPkce(43, (error, { verifier, challenge }) => {
@@ -39,8 +39,8 @@ getPkce(43, (error, { verifier, challenge }) => {
 
 Use directly from CDN
 
-```JavaScript
-<script src="https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js" async defer></script>
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/oauth-pkce@0.0.2/dist/oauth-pkce.min.js" async defer></script>;
 
 getPkce(43, (error, { verifier, challenge }) => {
   if (!error) {
@@ -51,7 +51,7 @@ getPkce(43, (error, { verifier, challenge }) => {
 
 React
 
-```JSX
+```javascript
 import React, { useEffect, useState } from 'react';
 import getPkce from 'oauth-pkce';
 
@@ -67,7 +67,9 @@ function Pkce() {
   }, []);
 
   return (
-    <div>{pkce.verifier} | {pkce.challenge}</div>
+    <div>
+      {pkce.verifier} | {pkce.challenge}
+    </div>
   );
 }
 ```

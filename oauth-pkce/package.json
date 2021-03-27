@@ -1,6 +1,10 @@
 {
   "name": "oauth-pkce",
+<<<<<<< HEAD
+  "version": "0.0.6",
+=======
   "version": "0.0.4",
+>>>>>>> d4cd3078eb90c3590df6196140cb37b927159be9
   "description": "OAUTH PKCE code_verifier and code_challenge generator",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,7 +18,13 @@
     "code_verifier",
     "IE11",
     "IE 11",
+<<<<<<< HEAD
+    "code_challenge",
+    "open ID connect",
+    "oidc"
+=======
     "code_challenge"
+>>>>>>> d4cd3078eb90c3590df6196140cb37b927159be9
   ],
   "repository": {
     "type": "git",
@@ -49,7 +59,7 @@
     "eslint-plugin-security": "^1.4.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "mocha": "^8.0.1",
+    "mocha": "^8.3.2",
     "prettier": "^2.0.5",
     "sinon": "^9.0.2",
     "size-limit": "^4.5.5",

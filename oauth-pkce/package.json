@@ -1,10 +1,6 @@
 {
   "name": "oauth-pkce",
-<<<<<<< HEAD
   "version": "0.0.6",
-=======
-  "version": "0.0.4",
->>>>>>> d4cd3078eb90c3590df6196140cb37b927159be9
   "description": "OAUTH PKCE code_verifier and code_challenge generator",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -18,13 +14,9 @@
     "code_verifier",
     "IE11",
     "IE 11",
-<<<<<<< HEAD
     "code_challenge",
     "open ID connect",
     "oidc"
-=======
-    "code_challenge"
->>>>>>> d4cd3078eb90c3590df6196140cb37b927159be9
   ],
   "repository": {
     "type": "git",

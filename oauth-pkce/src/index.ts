@@ -31,7 +31,7 @@ function b64Uri(string: string) {
 
 export default function getPkce(length: number | undefined, callback: Callback): void {
   if (!length) length = 43;
-  const cryptoLib = window.msCrypto || window.crypto;
+  const cryptoLib = (typeof window !== 'undefined') && window.msCrypto || crypto;
 
   const verifier = b64Uri(
     Array.prototype.map
@@ -47,7 +47,7 @@ export default function getPkce(length: number | undefined, callback: Callback):
   }
   const digest = cryptoLib.subtle.digest('SHA-256', randomArray);
 
-  if (window.CryptoOperation) {
+  if ((typeof window !== 'undefined') && window.CryptoOperation) {
     (digest as typeof CryptoOperation).onerror = callback;
     (digest as typeof CryptoOperation).oncomplete = function (event: { target: { result: ArrayBuffer } }) {
       runCallback(callback, verifier, event.target.result);

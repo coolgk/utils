@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/coolgk/utils#readme",
   "devDependencies": {
-    "lerna": "^3.22.1"
+    "lerna": "^8.1.2"
   }
 }
